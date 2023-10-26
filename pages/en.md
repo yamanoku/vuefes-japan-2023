@@ -19,7 +19,7 @@ lang: en
 
 [やまのく](https://yamanoku.net)と申します。
 
-[株式会社クラウドワークス](https://crowdworks.co.jp/)にて、 フロントエンドエンジニアとして施策の開発やデザインシステムの開発にも携わっておりました。現在は技術的負債解消をリードするチームに所属し、レガシーフロントエンド環境の刷新に関わっております。
+[株式会社クラウドワークス](https://crowdworks.co.jp/)にて、フロントエンドエンジニアとして施策の開発やデザインシステムの開発にも携わっておりました。現在は技術的負債解消をリードするチームに所属し、レガシーフロントエンド環境の刷新に関わっております。
 
 ウェブの仕様についてやウェブアクセシビリティにまつわることに興味があります。
 
@@ -90,7 +90,7 @@ lang: en
 
 その際[WebAIM](https://webaim.org/)という団体によるクライアントサイドフレームワークのアクセシビリティの対応状況を取り上げました。
 
-![The WebAIM Million 2023 の JavaScript フレームワークの結果。Vue.js でのアクセシビリティ対応は平均より 20.9% も低い結果が出ている](../images/the-webaim-million-2023.png)
+![The WebAIM Million 2023のJavaScriptフレームワークの結果。Vue.jsでのアクセシビリティ対応は平均より20.9%も低い結果が出ている](../images/the-webaim-million-2023.png)
 
 数字は改善傾向にありますが、2023年時点でも結果がまだ悪いことが私個人としては気になっています。
 
@@ -196,7 +196,7 @@ watch(
 <p
   role="status"
   aria-live="assertive"
-  class="sr-only"
+  class="visually-hidden"
 >
   ｛｛ message ｝｝
 </p>
@@ -219,7 +219,7 @@ watch(
 }
 ```
 
-ここで注意することとしては `display: none` で非表示にすると支援技術では存在を検知できないため**視覚的にだけ**見えないようにする必要があります。このスタイル手法は通称 [Visually Hidden](https://www.a11yproject.com/posts/how-to-hide-content/) と呼ばれているものです。
+ここで注意することとしては `display: none` で非表示にすると支援技術では存在を検知できないため**視覚的にだけ**見えないようにする必要があります。このスタイル手法は通称[Visually Hidden](https://www.a11yproject.com/posts/how-to-hide-content/)と呼ばれているものです。
 
 それでは変更したものを一緒に見てみましょう。
 
@@ -227,7 +227,7 @@ watch(
 
 このようにしてリンクが押された場合に画面が切り替わっていることを通知できるようになりました。
 
-Nuxt.js で作られたマストドンクライアントの「[elk](https://github.com/elk-zone/elk)（エルク）」ではこの手法をコンポーネントとして活用しています。
+Nuxt.jsで作られたマストドンクライアントの「[elk](https://github.com/elk-zone/elk)（エルク）」ではこの手法をコンポーネントとして活用しています。
 
 - [elk/components/aria/AriaAnnouncer.vue](https://github.com/elk-zone/elk/blob/5d09e7d2ab473d3fe049ace8468455baa18de9b2/components/aria/AriaAnnouncer.vue)
 
@@ -251,7 +251,7 @@ Nuxt.js で作られたマストドンクライアントの「[elk](https://gith
 
 こうした問題を解消するため、次に移動してほしい要素へフォーカスするための処理を挟む必要があります。
 
-Vue.js での対象の要素を取得する場合、`ref` を使用しテンプレート参照します。
+Vue.jsでの対象の要素を取得する場合、`ref` を使用しテンプレート参照します。
 
 ```ts
 const focusedRef = ref<HTMLElement>();
@@ -262,8 +262,9 @@ const focusedRef = ref<HTMLElement>();
 この問題を解決するためには、`tabindex` 属性を使用することで、要素へフォーカス可能になるよう設定できます。
 
 ```ts
-const announceRoute = () => {
+onMounted(() => {
   if (focusedRef.value) {
+    focusedRef.value.tabIndex = -1;
     focusedRef.value.focus();
   }
 };
@@ -283,7 +284,7 @@ const announceRoute = () => {
 
 今回は `main` 要素内のものが少ないため読み上げるものはわずかでしたが、実際の場合はこれよりも多いコンテンツがあることが想定されます。
 
-これは Windows で利用できる [NVDA](https://www.nvda.jp/) というスクリーンリーダーでの結果です。一方で macOS のスクリーンリーダーではこのような読み上げ方をしませんが、デバイスやOSによってスクリーンリーダーの挙動は異なるため、注意が必要です。
+これはWindowsで利用できる[NVDA](https://www.nvda.jp/)というスクリーンリーダーでの結果です。一方でmacOSのスクリーンリーダーではこのような読み上げ方をしませんが、デバイスやOSによってスクリーンリーダーの挙動は異なるため、注意が必要です。
 
 では、この問題を解決するためにはどうしたらよいのでしょうか。
 
@@ -382,7 +383,7 @@ Vue.jsでComposition APIを使用している場合、[VueUse](https://vueuse.or
 
 以上がNuxt.jsにおける画面遷移についてのアクセシビリティについてでした。
 
-## 画面遷移を Web API から解決する
+## 画面遷移をWeb APIから解決する
 
 次に、Routerライブラリやフレームワークに依存しない、将来のクライアントサイドルーティングでの開発に活用できるWeb APIについて紹介していきます。
 
@@ -414,7 +415,7 @@ Navigation APIはHistory APIでは解決できなかったクライアントサ�
 
 2023年10月現在、Chromeでは実装されており動作するようになっていますが、SafariやFirefoxではまだ実装されていません。
 
-![スクリーンショット：Can I Use での Navigation API にまつわるブラウザ対応表](../images/caniuse-navigation-api.png)
+![スクリーンショット：Can I UseでのNavigation APIにまつわるブラウザ対応表](../images/caniuse-navigation-api.png)
 
 しかし、ウェブの相互運用性を向上させることを目的としたプロジェクト「[Interop](https://github.com/web-platform-tests/interop)」において、各モダンブラウザで使用可能となるよう注力されているAPIの一つとして[投票されています](https://github.com/web-platform-tests/interop/issues/435)。
 
