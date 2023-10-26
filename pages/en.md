@@ -5,157 +5,158 @@ description: yamanoku's presentation at Vue Fes Japan 2023
 lang: en
 ---
 
-![スライドタイトル：画面遷移から考えるNuxtアプリケーションをアクセシブルにする方法](../images/title.png)
+![Slide Title: How to make Nuxt applications accessible based on page transitions](../images/title.png)
 
-## 翻訳記事一覧
+## Translation Articles
 
-[日本語ページ](https://yamanoku.net/vuefes-japan-2023/ja/) / [English page](https://yamanoku.net/vuefes-japan-2023/en/)
+[English page](https://yamanoku.net/vuefes-japan-2023/en/) / [日本語ページ](https://yamanoku.net/vuefes-japan-2023/ja/)
 
-## はじめに
+## Introduction
 
-はじめに自己紹介です。
+First, let me introduce myself.
 
-<img src="../images/yamanoku-icon.png" alt="写真：やまのく" width="256" height="256">
+<img src="../images/yamanoku-icon.png" alt="Photo: yamanoku" width="256" height="256">
 
-[やまのく](https://yamanoku.net)と申します。
+My name is [yamanoku](https://yamanoku.net).
 
-[株式会社クラウドワークス](https://crowdworks.co.jp/)にて、フロントエンドエンジニアとして施策の開発やデザインシステムの開発にも携わっておりました。現在は技術的負債解消をリードするチームに所属し、レガシーフロントエンド環境の刷新に関わっております。
+I was engaged in the development of initiatives and the development of design systems as a front-end engineer at [CrowdWorks, Inc](https://crowdworks.co.jp/). Currently, I belong to a team leading the resolution of technical debt and am involved in refreshing the legacy front-end environment.
 
-ウェブの仕様についてやウェブアクセシビリティにまつわることに興味があります。
+I am interested in web specifications and issues related to web accessibility.
 
-また、一児の父でゴールデン・レトリバーと3匹の猫の飼い主をやっております。
+In addition, I am a father of one child, and I have a Golden Retriever and three cats.
 
-本題に入る前に今回のテーマに関わる**ウェブアクセシビリティ**とはなにかを説明します。
+Before we get to the main topic, let me explain what **web accessibility**, which is related to today’s theme, is all about.
 
-アクセシビリティとはアクセスと能力の単語を組み合わせたもので、情報や製品、サービスが利用できるようにする意味で使われる言葉です。略して*A11y*とも書かれていることがあります。
+Accessibility is a word that combines "access" and "ability," and it is used to mean making information, products, and services available. It is sometimes abbreviated as *A11y*.
 
 ![Access + Ability = Accessibility (A11y)](../images/accessibility-a11y.png)
 
-ウェブアクセシビリティはウェブの文脈にて考えられるアクセシビリティのことで「利用者の障害の有無やその程度、年齢や利用環境にかかわらず、ウェブで提供されている情報やサービスを利用できること、またはその到達度」とされています。
+Web accessibility refers to accessibility in the context of the web, and it is defined as "the ability for users to access information and services provided on the web, regardless of the presence or extent of disabilities, age, or usage environment, or the degree of accessibility to those resources."
 
-ウェブアクセシビリティについてお話しする際に、最初に理解しておくべき重要なポイントがあります。それは、「元々ウェブはアクセシブルなもの」ということです。
+When discussing web accessibility, there is an important point that should be understood first: "Originally, the web is supposed to be accessible."
 
-ここで、コロナ禍で多くの人々がリモート勤務を余儀なくされた時期を思い出してみてください。その時、私たちはオンラインで情報を得たり、発信したりすることが可能でした。
+Please recall the period during the COVID-19 pandemic when many people were forced to work remotely. During that time, we were able to obtain and disseminate information online.
 
-これは、ウェブという媒体を通じて物事がアクセシブルになっている一例です。
+This is an example of how things have become accessible through the medium of the web.
 
 そんなウェブのおかげで障害当事者もウェブサービスを通じることでさまざまなものにアクセスできるようになっています。
 
-* Web検索
-* ニュース・新聞の閲覧
-* ブログ・SNSの閲覧
-* 外出時のナビゲーション
-* 乗り換え検索
-* ショッピング、金融サービスの口座の状況確認
-* マイポータルやマイナンバーカードを利用した各種手続き等
+Thanks to the web, individuals with disabilities have become able to access a variety of resources through web services, including:
 
-これは視覚障害者向けの支援技術の利用状況に関する調査によるもので、彼らがパソコンやスマートフォンを介してさまざまなサービスを利用していることが明らかになっています。
+* Web searches
+* Reading news and newspapers
+* Browsing blogs and social media
+* Navigation when going out
+* Transfer searches
+* Checking account statuses for shopping and financial services
+* Various procedures using My Portal and the My Number card, etc.
 
-ウェブアクセシビリティを確保することは、障害を持つ人々に対しても公平なサービスを提供するための手段であり、これにより様々な背景を持つ人々がサービスを利用できるようになります。
+This information is based on a survey regarding the usage of assistive technologies for visually impaired individuals, revealing that they utilize various services via computers and smartphones.
 
-今回[Vue Fes Japan 2023](https://vuefes.jp/2023/)ということで日本とウェブアクセシビリティに関するタイムリーな話題についてを紹介します。
+Ensuring web accessibility serves as a means to provide equitable services to people with disabilities, allowing individuals from diverse backgrounds to utilize these services.
 
-それは**改正障害者差別解消法**と**環境の整備**についてです。
+For this occasion, [Vue Fes Japan 2023](https://vuefes.jp/2023/), I would like to introduce a timely topic related to Japan and web accessibility.
 
-障害者差別解消法は障害を理由とする差別の解消と、障害のある人もない人も、互いにその人らしさを認め合いながら共に生きる社会を実現することを目的とする法律です。
+It pertains to the **Reasonable accommodation（合理的配慮）** and the **Environmental Adjustment（環境の整備）**.
 
-この法律により、障害がある人々を不公平に差別するのではなく、彼らが日常生活を送る上で直面する困難を和らげたり、解決したりするための措置や配慮が求められます。
+The Act for Eliminating Discrimination against Persons with Disabilities aims to eradicate discrimination based on disability and realize a society where people, with or without disabilities, live together while acknowledging each other's individuality.
 
-来年の4月からは、障害のある人々への合理的な配慮を提供することが、民間企業においても努力義務ではなく法的な義務化になります。
+Under this law, instead of unfairly discriminating against people with disabilities, measures and considerations are required to alleviate and resolve the difficulties they face in their daily lives.
 
-**合理的配慮**とは、障害を持つ人が社会に参加する際に必要な特別な支援や調整を指します。これにはさまざまな形があります。
+From April of next year, providing reasonable accommodations for people with disabilities will become a legal obligation, not just an effort obligation, for private companies as well.
 
-例として、障害を持つ人が筆記が難しい場合に代筆をしてもらう、コミュニケーションを取る際に、絵カードや写真カードやタブレット端末を使用してみる、肢体不自由な人が移動する際には、移動のサポートを提供することも合理的配慮の一環と言えます。
+**Reasonable accommodation** refers to special support and adjustments needed when a person with a disability participates in society. This can take various forms.
 
-合理的配慮は、障害を持つ人が困難を感じた際、その人の個別のニーズに応じて無理のない範囲で対応していく必要があります。
+For example, if a person with a disability has difficulty writing, they could receive assistance from someone else to write on their behalf. When communicating, trying out picture cards, photo cards, or tablet devices could be beneficial. Additionally, providing support for mobility to people with physical disabilities can also be considered a part of reasonable accommodation.
 
-ですが、合理的配慮が必要な人との関係が長期にわたる場合、毎回対応をすることが双方にとって負担となることがあります。
-この負担を減らすため、効率的かつ持続可能なサポート方法を検討することが欠かせません。
+Reasonable accommodations require providing support according to the individual needs of the person with a disability, within a reasonable range, whenever they experience difficulties.
 
-事前に改善措置を施しておくことで、さまざまな場面で障害を持つ個々の人々への合理的配慮をスムーズに行えるようになるのですが、これを**環境の整備**と言います。
+However, when interactions with individuals requiring reasonable accommodations extend over a long period, addressing their needs each time can become a burden for both parties. To reduce this burden, it is essential to consider efficient and sustainable support methods.
 
-例えば、聴覚障害者と筆談でコミュニケーションを取る必要がある状況では、タブレットなどの入力装置を準備しておくことで、その人自身が入力できるようにし、都度の対応や外部からの支援を必要としなくなります。
+Taking preemptive improvement measures can facilitate the smooth provision of reasonable accommodations to individuals with disabilities in various situations. This is referred to as **Environmental Adjustment**.
 
-ウェブアクセシビリティは、合理的配慮そのものではなく、事前的な措置として行う環境の整備で行うためのものとしての位置づけです。
+For example, in situations where communication with a person who has a hearing impairment is necessary, preparing input devices such as tablets in advance enables them to input by themselves, eliminating the need for assistance or external support each time.
 
-先ほどの合理的配慮で説明したように、これまで電話や筆談でしか対応できなかったことも、ウェブを介して行うことで非同期的に、そして支援技術を利用して個々人が自分で問い合わせや入力を行えるようになります。
+Web accessibility is positioned not as reasonable accommodation itself, but as a form of environmental adjustment, undertaken as a preemptive measure.
 
-ウェブアクセシビリティを実現することで、利用者の満足度が向上し、対応や問い合わせが減少することで全体の業務効率が向上することが期待されています。
+As explained in the previous section on reasonable accommodations, even matters that could only be addressed via phone calls or writing can now be handled asynchronously through the web, enabling individuals to make inquiries or input by themselves using assistive technologies.
 
-そんなウェブアクセシビリティの重要性を理解したうえで立ち返ってほしいことがあります。
+By achieving web accessibility, an increase in user satisfaction is expected, along with a reduction in inquiries and improved overall work efficiency.
 
-それは私たちがこれまでに作ってきた、そして現在作っているVue.jsやNuxt.jsを使用したアプリケーションが実際にアクセシブルであるかどうか、ということです。
+Understanding the importance of web accessibility, there's something crucial we need to revisit.
 
-前回のVue Fes Japanでは「[Vue.jsでアクセシブルなコンポーネントをつくるために](https://yamanoku.net/vuefes-japan-online-2022/ja/)」をテーマに、誤ったアクセシビリティ対応についてや、Vue.jsの強みを活かしたアクセシビリティへの配慮とテストについて話させていただきました。
+It’s about whether the applications we have developed in the past, and are currently developing, using Vue.js or Nuxt.js, are actually accessible.
 
-その際[WebAIM](https://webaim.org/)という団体によるクライアントサイドフレームワークのアクセシビリティの対応状況を取り上げました。
+At the previous Vue Fes Japan, the theme was "[To make accessible components in Vue.js](https://yamanoku.net/vuefes-japan-online-2022/en/)", where I talked about incorrect approaches to accessibility, and how to leverage Vue.js’s strengths for accessibility considerations and testing.
 
-![The WebAIM Million 2023のJavaScriptフレームワークの結果。Vue.jsでのアクセシビリティ対応は平均より20.9%も低い結果が出ている](../images/the-webaim-million-2023.png)
+During that session, I addressed the accessibility support status of client-side frameworks according to [WebAIM](https://webaim.org/), an organization dedicated to accessibility.
 
-数字は改善傾向にありますが、2023年時点でも結果がまだ悪いことが私個人としては気になっています。
+![The WebAIM Million 2023 results for JavaScript frameworks. The accessibility support in Vue.js is 20.9% below the average](../images/the-webaim-million-2023.png)
 
-私を含むVue.jsやNuxt.jsを用いる開発者たちが、ウェブアクセシビリティを正確に考慮した開発を継続できるよう、今回の発表でもその点を話すことができればと考えています。
+Although the numbers are showing a trend of improvement, the results are still concerning as of 2023, and this is something that personally worries me.
 
-今回は「画面遷移」におけるアクセシビリティに焦点を当てて話を進めていきたいと思います。
+I am aiming, including myself, to enable developers who use Vue.js and Nuxt.js to continue their development with accurate consideration of web accessibility. I hope to address this point in my presentation today.
 
-改めてよろしくお願いいたします。
+This time, I would like to focus on accessibility in terms of "page transitions."
 
-### クライアントサイドルーティングという手法
+Thank you once again for your attention.
 
-まず初めに、**クライアントサイドルーティング**という手法について説明しましょう。
+### The Technique of Client-Side Routing
 
-通常の画面遷移では、サーバーサイドが新しいページのHTMLを生成し、それをクライアントに送信して画面を表示します。これが一般的なルーティングの形になります。一方で、クライアントサイドルーティングは全ての処理をクライアント側で完結させる手法です。
+First and foremost, let's delve into the concept of **Client-Side Routing**.
 
-この手法は、シングルページアプリケーションや画面内の一部を動的に更新する際に利用されます。
+In typical screen transitions, the server-side generates new page HTML and sends it to the client for display. This is considered the standard form of routing. On the other hand, client-side routing is a technique that completes all processes on the client side.
 
-クライアントサイドルーティングにはいくつかの利点があります。
+This method is utilized in Single Page Applications or when dynamically updating a portion of the screen.
 
-- ページナビゲーションが早い
-- クライアントサイドで状態を保持したまま移動ができる
-- 2つ以上のレイアウトを入れ子にするNasted Layoutsでの活用
-- カスタマイズされたページ間のトランジションアニメーションができる
+Client-side routing offers several advantages:
 
-これらの特長は、ウェブサイトやアプリケーションのユーザー体験を向上させる上で大いに役立ちます。
+- Faster page navigation
+- Client-side state preserved across navigation
+- Nested Layouts
+- Custom page transition animations
 
-ページ間のトランジションアニメーションといえば、最近さまざまなクライアントフレームワークで導入されつつある[View Transitions API](https://developer.mozilla.org/ja/docs/Web/API/View_Transitions_API)があります。Nuxt.jsでは[バージョン3.4からexperimentalで導入](https://nuxt.com/blog/v3-4)されています。
+These features significantly contribute to enhancing the user experience of websites and applications.
 
-現在はView Trainsitions API非対応ブラウザでのフォールバックがないため、そのまま使用する場合は対応するブラウザのみでしか動かないことに注意です。
+Speaking of transition animations between pages, there is the [View Transitions API](https://developer.mozilla.org/ja/docs/Web/API/View_Transitions_API), which has been increasingly introduced in various client frameworks recently. In Nuxt.js, it has been introduced as experimental from [version 3.4](https://nuxt.com/blog/v3-4).
 
-実際のデモを見てみましょう。
+Please note that if you use it as is, it will only work in browsers that support the View Transitions API, since there is no fallback for browsers that do not support it at this time.
+
+Let's take a look at an actual demo.
 
 <video src="https://user-images.githubusercontent.com/904724/231222082-6bd4aeae-3026-407e-b3be-658df6305748.mp4" controls style="width: 100%; border: 1px solid var(--y-image-border-color);" loop></video>
 
-画面遷移するごとにクリックした対象部分が拡大されているような効果が入っています。
+With each screen transition, you can see an effect as if the clicked target area is expanding.
 
-異なる２要素間にトランジション効果をつけることができるため、ページ全体やコンポーネント単一でのトランジションはできたものから更に一段階上の画面遷移を実現できるようになります。
+Because you can add transition effects between two different elements, it becomes possible to achieve even more advanced screen transitions, beyond what was possible with transitions across entire pages or single components.
 
-スムーズな画面遷移を実現するための手法も増えて、導入障壁も下がりつつあるため、シングルページアプリケーションが出始めた当初よりクライアントサイドルーティングはより身近なものとなってきたと思います。
+With the increasing number of techniques available for smooth screen transitions, and with the barriers to implementation becoming lower, I believe that client-side routing has become more accessible than when single-page applications first started to appear.
 
-## 画面遷移におけるアクセシビリティの問題点
+## Accessibility Issues in Page Transitions
 
-より便利に身近になってきたクライアントサイドルーティングですが、それによって見逃してしまうアクセシビリティの問題は存在します。次は問題点についてと、その問題の解決策についてを紹介していきます。
+While client-side routing has become more convenient and accessible, there are accessibility issues that can be overlooked due to this technology. Next, we will introduce these issues and discuss potential solutions.
 
-### 何が変化したかが支援技術に伝わらない
+### Support Technologies May Not Detect Changes
 
-まず１つに何が変化したかが支援技術に伝わらないというのがあります。これは画面遷移のアクセシビリティを考慮する際に最も気付きづらい問題です。
+Firstly, there is an issue where support technologies may not detect what has changed. This is one of the most difficult problems to notice when considering the accessibility of screen transitions.
 
-クライアントサイドルーティングを用いた画面遷移は、視覚的にはどの部分が変わったのか明確に捉えることができるかもしれません。しかし、支援技術を利用してページを閲覧しているユーザーはその変化に気づきにくい可能性があります。
+Although visually it might be clear which part of the screen has changed during a client-side routing transition, users who rely on assistive technologies to navigate the page may find it difficult to notice these changes.
 
-画面内のものを読み上げてくれる支援技術のスクリーンリーダーを使用してクライアントサイドルーティングの様子を見てみましょう。
+Let's take a look at how client-side routing works using a screen reader, a type of assistive technology that reads out the content on the screen.
 
 <video src="../videos/demo-movie-01.mov" controls style="width: 100%; border: 1px solid var(--y-image-border-color);"></video>
 
-このように画面上では適切にページが切り替わっているものの、スクリーンリーダーを使用しているユーザーにはその変化が通知されないことが分かるかと思います。
+As we can see, even though the page visually transitions correctly, users utilizing screen readers may not be notified of these changes.
 
-このような問題はどのように回避すればよいのでしょうか。
+How can we circumvent this issue?
 
-解決する手段の１つとしてWebコンテンツをよりアクセシブルにするための技術仕様であるWAI-ARIAを活用した[ARIAライブリージョン](https://developer.mozilla.org/ja/docs/Web/Accessibility/ARIA/ARIA_Live_Regions)というものがあります。ARIAライブリージョンは、動的なコンテンツ変更をユーザーに通知するために使用されます。
+One solution involves leveraging WAI-ARIA, a set of technical specifications for making web content more accessible. Within WAI-ARIA, there is a feature called [ARIA Live Region](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions), which is used to notify users of dynamic content changes.
 
-画面遷移時にユーザーに通知を行うアクセシブルな方法として、ARIAライブリージョンを利用して `title` 要素の変更を通知する手法があります。
+An accessible method to notify users during screen transitions is to use ARIA Live Regions to announce changes in the `title` element.
 
-具体的な手法を説明していきます。
+Let's delve into the specific techniques.
 
-まずはページ単位で `useHead` からそのページの `title` を指定します。
+First, specify the page's `title` using `useHead` at a page level.
 
 ```ts
 useHead({
@@ -163,7 +164,7 @@ useHead({
 });
 ```
 
-次にタイトル要素を取得してきて、ページが移動する度に変更を検知させます。
+Next, fetch the title element and detect changes whenever the page transitions.
 
 ```ts
 const route = useRoute();
@@ -188,9 +189,9 @@ watch(
 );
 ```
 
-今回の例では Route のパスを検知した上で変更させています。`setTimeout` を使用して少し遅延させることで、支援技術によっては直ちに反映されない通知の取得タイミングのズレを補正しています。
+In this example, we are detecting changes based on the route's path. Using `setTimeout`, we introduce a slight delay to compensate for potential notification timing issues with assistive technologies.
 
-そして通知させるための変数をHTML側に組み込みます。
+Then, integrate the notification variable into the HTML side.
 
 ```html
 <p
@@ -202,9 +203,9 @@ watch(
 </p>
 ```
 
-`aria-live` というWAI-ARIAを使用することで支援技術に通知させるようにできています。値は `assertive` を使用することで変更が即座にアナウンスされ、ユーザーの注意を引くことができます。
+By using WAI-ARIA's `aria-live`, you can ensure that `assistive` technologies are notified. Using assertive as the value ensures that changes are announced immediately, capturing the user's attention.
 
-対応するHTML要素はスクリーンリーダーが検知する目的のみに使用されるため、通常は画面上では非表示になるようにします。
+The corresponding HTML element is used solely for detection by screen readers, and as such, it is typically hidden from view on the screen.
 
 ```css
 .visually-hidden {
@@ -219,47 +220,47 @@ watch(
 }
 ```
 
-ここで注意することとしては `display: none` で非表示にすると支援技術では存在を検知できないため**視覚的にだけ**見えないようにする必要があります。このスタイル手法は通称[Visually Hidden](https://www.a11yproject.com/posts/how-to-hide-content/)と呼ばれているものです。
+A critical point to note here is that hiding the element using `display: none` would render it undetectable by assistive technologies. Therefore, you must hide it **visually only**. This styling technique is commonly referred to as [Visually Hidden](https://www.a11yproject.com/posts/how-to-hide-content/).
 
-それでは変更したものを一緒に見てみましょう。
+Now, let's take a look at the changes together.
 
 <video src="../videos/demo-movie-02.mov" controls style="width: 100%; border: 1px solid var(--y-image-border-color);"></video>
 
-このようにしてリンクが押された場合に画面が切り替わっていることを通知できるようになりました。
+Thus, we have established a way to notify users when a link is clicked and the screen transitions.
 
-Nuxt.jsで作られたマストドンクライアントの「[elk](https://github.com/elk-zone/elk)（エルク）」ではこの手法をコンポーネントとして活用しています。
+The Mastodon client for Nuxt.js, "[elk](https://github.com/elk-zone/elk)", utilizes this technique as a component.
 
 - [elk/components/aria/AriaAnnouncer.vue](https://github.com/elk-zone/elk/blob/5d09e7d2ab473d3fe049ace8468455baa18de9b2/components/aria/AriaAnnouncer.vue)
 
-支援技術を利用してページを確認する際には、ページが読み込まれた後に現在のページタイトルがアナウンスされるのを聞くことができます。
+When using assistive technologies to navigate the page, you can hear the current page title announced after the page has loaded.
 
-ソースコードは公開されているので、興味がある方は実際のアプリケーションがどのように動作するのかを確認しながら、チェックしてみてください。
+The source code is publicly available, so if you're interested, feel free to check it out and see how the application functions in real-time.
 
-### フォーカスマネジメント
+### Focus Management
 
-次に画面が切り替わったことでのキーボード操作についてです。
+Next, let's talk about keyboard navigation when the page transitions.
 
-キーボード操作では、エンターキーまたはスペースキーで項目を決定したり、矢印キーで項目を移動したり、エスケープキーで操作を解除するなどの操作があります。
+With keyboard navigation, there are various actions like deciding on items with the Enter or Space key, moving between items using the arrow keys, or canceling an action with the Escape key.
 
-今回は、その中でも特にタブキーを使用したフォーカス移動に関する問題点をデモを通じてご紹介します。
+In this section, we will especially focus on issues related to moving the focus using the Tab key, and we will illustrate these issues through a demo.
 
 <video src="../videos/demo-movie-03.mov" controls style="width: 100%; border: 1px solid var(--y-image-border-color);"></video>
 
-ページ下部に位置するリンクを選択した際には、確かに画面のコンテンツは更新されますが、フォーカスの移動すると、以前の位置、すなわち下部のリンクからの移動となってしまいます。
+When you select a link located at the bottom of the page, while the content on the screen does indeed update, the focus will move from its previous position, which is the link at the bottom.
 
-状況によってこれが問題とならないこともありますが、今回のデモで示すような状況ではこの挙動が非常に不都合であることがはっきりと分かります。
+This behavior might not pose a problem in certain situations, but in cases like the one demonstrated here, it becomes evident that this behavior can be highly inconvenient.
 
-こうした問題を解消するため、次に移動してほしい要素へフォーカスするための処理を挟む必要があります。
+To solve such issues, it is necessary to insert a process that moves the focus to the element we want to navigate to next.
 
-Vue.jsでの対象の要素を取得する場合、`ref` を使用しテンプレート参照します。
+In Vue.js, to target a specific element, you can use `ref` to create a template reference.
 
 ```ts
 const focusedRef = ref<HTMLElement>();
 ```
 
-タブキーを使用したフォーカス移動の際には、`a` 要素や `button` 要素のようなものはデフォルトでフォーカスを受け入れることができますが、フォーカスできないものもあります。
+When navigating using the Tab key, elements like `a` or `button` can accept focus by default. However, some elements cannot be focused on naturally.
 
-この問題を解決するためには、`tabindex` 属性を使用することで、要素へフォーカス可能になるよう設定できます。
+To solve this problem, you can use the `tabindex` attribute to make an element focusable.
 
 ```ts
 onMounted(() => {
@@ -270,81 +271,81 @@ onMounted(() => {
 };
 ```
 
-この値を `-1` に設定すると、要素は通常のキーボード操作ではフォーカスされなくなり、誤って操作されるリスクを防ぐことができます。その後、直接対象の要素をフォーカスさせています。
+Setting this value to `-1` ensures that the element will not receive focus through normal keyboard interactions, which can prevent accidental operations. After this, you can then directly set the focus to the target element.
 
-次に考えるべき点は、どの位置にフォーカスを当てるか、ということです。
+The next point to consider is where to place the focus after the page has transitioned.
 
-ページを移動した際、最初にフォーカスを当てるべき位置としては、ページの主要なコンテンツを包含する `main` 要素が適していると考えられます。しかし、この方法には問題点があります。
+When moving to a new page, the `main` element, which usually contains the primary content of the page, seems to be an appropriate choice for receiving initial focus. However, this approach has its issues.
 
-具体的な例を見てみましょう。ここでは、アバウトページへ遷移した際に `main` 要素にフォーカスを当てるような動作を紹介します。
+Let's take a look at a specific example. Here, we will demonstrate behavior where the `main` element is focused upon transitioning to the About page.
 
 <video src="../videos/demo-movie-04.mp4" controls style="width: 100%; border: 1px solid var(--y-image-border-color);"></video>
 
-気付きづらいかもしれませんが、`main` 要素にフォーカスが当たると、内包する全ての内容を一度に読み上げてしまいます。
+It might be subtle, but when the `main` element is focused, it ends up reading out all of its contents at once.
 
-今回は `main` 要素内のものが少ないため読み上げるものはわずかでしたが、実際の場合はこれよりも多いコンテンツがあることが想定されます。
+In this instance, there was only a small amount of content within the `main` element, so there was not much to read out. However, in a real-world scenario, it is expected that there would be more content than this.
 
-これはWindowsで利用できる[NVDA](https://www.nvda.jp/)というスクリーンリーダーでの結果です。一方でmacOSのスクリーンリーダーではこのような読み上げ方をしませんが、デバイスやOSによってスクリーンリーダーの挙動は異なるため、注意が必要です。
+This result is specific to [NVDA](https://www.nvda.jp/), a screen reader available on Windows. On the other hand, screen readers on macOS do not read out content in this manner, but it is important to note that screen reader behavior varies depending on the device and OS.
 
-では、この問題を解決するためにはどうしたらよいのでしょうか。
+So, how should we solve this issue?
 
-対象が大きすぎて全体を一度に読み上げてしまうのであれば、フォーカス対象の要素を小さくしてみるのが一つの方法です。
+If the target is too large and ends up reading out everything at once, one method to consider is making the focus target element smaller.
 
 <video src="../videos/demo-movie-05.mp4" controls style="width: 100%; border: 1px solid var(--y-image-border-color);"></video>
 
-ページ内に見出し要素が存在する場合は、その要素にフォーカスを移動させるように変更することをお勧めします。
+If there are heading elements present on the page, we recommend changing the behavior to move focus to those elements.
 
-もし見出しがない場合は、スキップリンクを用意して、そこへフォーカスを移動させ、ARIAライブリージョンでページタイトルを読み上げるのも１つの方法だと思っています。
+If there are no headings, another method could be to provide a skip link, moving the focus there, and reading out the page title using ARIA live region.
 
-スキップリンクとは、主にキーボードを使用してブラウジングするユーザーのための機能で、ページの先頭から直接メインコンテンツの開始部分へジャンプできるページ内リンクのことを指します。
+A skip link is a feature mainly for users who browse using a keyboard, referring to an in-page link that allows users to jump directly from the top of the page to the start of the main content.
 
-この手法自体はウェブアクセシビリティで必須のものではありませんが、スキップリンク自体があれば使う人もいるため一定効果があるものだと考えられています。
+While this technique is not mandatory for web accessibility, it is considered to be effective as there are users who will utilize skip links if they are available.
 
-GitHubでもこの方法が採用されており、ページの先頭からメインコンテンツの直前の要素に簡単に移動することができ、そこから続けてメインコンテンツにアクセスすることが可能です。
+This method has been adopted by GitHub, allowing users to easily move from the top of the page to the element right before the main content, and from there, proceed to access the main content.
 
-![スクリーンショット：Nuxt.jsのリポジトリページで「Skip to content」というリンクが表示されている](../images/github-skip-link.png)
+![Screenshot: A link labeled “Skip to content” is displayed on the Nuxt.js repository page](../images/github-skip-link.png)
 
-スキップリンクの作成方法に関しては、[Vue.js公式ドキュメントのアクセシビリティページ](https://ja.vuejs.org/guide/best-practices/accessibility.html#skip-link)でも詳しく説明されていますので、是非ご覧ください。
+For information on how to create skip links, please refer to the [accessibility page in the Vue.js official documentation](https://ja.vuejs.org/guide/best-practices/accessibility.html#skip-link), where it is explained in detail.
 
-以上の内容からページ遷移した後にフォーカスする対象としては、情報量が少ない箇所を選ぶことが望ましいと言えます。
+Based on the above information, it can be said that it is preferable to choose areas with less content when deciding where to place the focus after a page transition.
 
-フォーカスの開始位置において**必ずここにする**という明確なルールは存在しません。状況によっては、フォーカス位置を変更しない方がユーザーにとって理解しやすい場合もあるでしょう。
+There is no clear rule stating that the starting position of the focus **must always be here**. Depending on the situation, it might be easier for the user to understand if the focus position is not changed.
 
-しかし、その際にはユーザーには「位置が変わらない」という挙動を学習する必要があります。そのため、サーバーサイドでのページ遷移と同様、**ブラウザの上部から遷移が始まるような形**を基本としておくことが重要です。
+However, in such cases, users need to learn the behavior that "the position does not change." Therefore, it is important to basically set it up in such a way that, similar to page transitions on the server side, **the transition starts from the top of the browser**.
 
-### 過度なアニメーションで閲覧が阻害される
+### Excessive Animation Hindering Browsing
 
-最後に過度なアニメーションで閲覧が阻害されるというのがあります。
+Lastly, there is an issue where excessive animations can hinder browsing.
 
-ページトランジションアニメーションを使用することは、画面遷移の流れをスムーズにしてユーザーへの没入感を高めることができます。
+Using page transition animations can smoothen the flow of screen changes and enhance the user's sense of immersion.
 
-一方で、全てのユーザーにとって最適な解決策であるとは限りません。特に前庭障害や認知障害を持つユーザーにとっては、アニメーションが原因で吐き気を催したり、混乱を引き起こしたりするリスクがあります。
+However, this is not necessarily the optimal solution for all users. Particularly for users with vestibular or cognitive disabilities, animations can pose a risk of inducing nausea or causing confusion.
 
-現在のPCやスマートフォンの多くでは、OSレベルで「視差効果を減らす」設定を提供しています。
+Many of today's PCs and smartphones provide a setting at the OS level to "Reduce motion".
 
-この設定は、画面上の動く視差効果を抑制し、より穏やかな表示に変更するものです。特にスマートフォンユーザーの中には、バッテリーの持ちを延ばすためにこの設定をONにしている方もいらっしゃるかもしれません。
+This setting suppresses moving parallax effects on the screen and changes the display to be calmer. Particularly for smartphone users, some may have this setting turned on to extend their battery life.
 
-視差効果を減らすための設定をフロントエンド側で制御する際には、`prefers-reduced-motion` を使用できます。
+To control the settings for reducing motion effects on the frontend side, you can use `prefers-reduced-motion`.
 
-JavaScriptとWeb Animations APIを使用してアニメーション設定しているのであれば、`window` オブジェクトの `matchMedia` メソッドを使ってユーザーの設定を取得し、`change` イベントリスナーを使ってアニメーションを制御することが可能です。
+If you are setting up animations using JavaScript and the Web Animations API, you can retrieve the user's settings using the `matchMedia` method of the `window` object and control the animations using a `change` event listener.
 
 ```js
 const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 mediaQuery.addEventListener('change', () => {
   console.log(mediaQuery.media, mediaQuery.matches);
-  // JavaScriptでのアニメーションを止める
+  // Stop JavaScript-based animations.
 });
 ```
 
-ただし、この方法ではユーザーが設定を変更した時点で内容を反映させる場合、ブラウザをリロードする必要があります。
+However, with this method, if the user changes their settings, it will be necessary to reload the browser to reflect the changes.
 
-Vue.jsでComposition APIを使用している場合、[VueUse](https://vueuse.org/)という状態管理のユーティリティライブラリが使えます。この中に[視差効果に関連するコンポジション関数](https://vueuse.org/core/usepreferredreducedmotion/)が含まれています。
+If you are using the Composition API with Vue.js, you can use a state management utility library called [VueUse](https://vueuse.org/). This library includes [composition functions related to motion preferences](https://vueuse.org/core/usepreferredreducedmotion/).
 
 <video src="../videos/demo-movie-06.mov" controls style="width: 100%; border: 1px solid var(--y-image-border-color);" loop></video>
 
-このようなツールを利用することで、よりスムーズにユーザーの設定に合わせた表示切り替えが実現できます。
+Using such tools can help you achieve a smoother transition to the display settings preferred by the user.
 
-もしCSSを使用して手早く設定を反映させたい場合、全ての要素に対して `animation` プロパティやそれに準ずるものを無効にすることで対応可能です。
+If you want to quickly apply settings using CSS, you can address this by disabling the `animation` property or equivalent for all elements.
 
 ```css
 @media (prefers-reduced-motion: reduce) {
@@ -362,7 +363,7 @@ Vue.jsでComposition APIを使用している場合、[VueUse](https://vueuse.or
 }
 ```
 
-また、View Transitions APIを使用している場合も、`animation` プロパティを無効に指定することでアニメーションを停止させることができます。
+Additionally, if you are using the View Transitions API, you can stop animations by specifying to disable the `animation` property.
 
 ```css
 @media (prefers-reduced-motion) {
@@ -374,88 +375,88 @@ Vue.jsでComposition APIを使用している場合、[VueUse](https://vueuse.or
 }
 ```
 
-アニメーションはCSSの設定を変更することで簡単に無効化することが可能です。
+Animations can be easily disabled by changing the CSS settings.
 
-しかし、それによって実際に違和感なく動作するかどうか、実際に確認することが必要です。
-視差効果を無効化する場合だけでなく、他のケースでも同様です。
+However, you need to actually confirm whether or not it works smoothly after making this change. This is true not only when disabling motion effects but also in other cases.
 
-コード上での変更を完了しただけで満足するのではなく、変更が意図通りに機能しているかを必ず確認してください。
+Don't just be satisfied with completing the changes in the code; always make sure that the changes are functioning as intended.
 
-以上がNuxt.jsにおける画面遷移についてのアクセシビリティについてでした。
+That concludes our discussion on accessibility in page transitions with Nuxt.js.
 
-## 画面遷移をWeb APIから解決する
+## Solving Page Transitions with Web API
 
-次に、Routerライブラリやフレームワークに依存しない、将来のクライアントサイドルーティングでの開発に活用できるWeb APIについて紹介していきます。
+Next, I will introduce the Web API, which can be utilized for future client-side routing development without depending on Router libraries or frameworks.
 
-画面遷移に関連するWeb APIとして、多くの方が[History API](https://developer.mozilla.org/ja/docs/Web/API/History_API)についてを思い浮かべるでしょう。
+When it comes to Web APIs related to screen transitions, many people will think of the [History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API).
 
-かつて「Pjax」と呼ばれる`pushState`とAjaxを組み合わせたページ遷移に関する技術が利用されていました。ここで言及される`pushState`は、History APIのメソッドの一つです。
+In the past, a technique combining `pushState` with Ajax, known as "Pjax", was used for page transitions. The mentioned `pushState` is one of the methods of the History API.
 
-Vue Routerの場合、このHistory APIを模した動作を提供しており、`push`、`replace`、`go`などのメソッドが存在します。
+In the case of Vue Router, it provides behavior similar to the History API, and methods such as `push`, `replace`, and `go` exist.
 
-ただし、History APIをそのまま使用するにはいくつか実装上の問題が発生します。
+However, there are several implementation issues when using the History API directly.
 
-* `iframe`内の遷移も含んでしまうため、Top Level Frameで履歴を管理しようとすると、意図しない形で履歴が破壊される可能性がある
-* ページ上で発生する`Navigation`を直接フックする方法が存在しないため、全てのリンククリックを監視する必要がある。しかしこれだけでは完璧に遷移をインタラプトすることはできない
-* 遷移をインデックスで管理するため、どのインデックスがどの状態に対応しているかを別途管理する必要がある
-* History APIとブラウザの履歴との連携はブラウザによって差異がある
-* `pushState`で保存する`state`には制限が多く、かつ壊れやすい
+* Transitions within an `iframe` are also included, which means that if you try to manage history at the Top Level Frame, there is a risk of unintentionally corrupting the history.
+* There is no direct way to hook into `Navigation` events occurring on the page, necessitating the monitoring of all link clicks. However, this alone is not sufficient to perfectly interrupt the transition.
+* Since transitions are managed by indexes, there is a need to separately manage which index corresponds to which state.
+* The integration between the History API and browser history varies across browsers.
+* There are many restrictions on the `state` saved with `pushState`, and it is prone to breaking.
 
-これらの問題を回避し、クライアントサイドルーティングを効果的に実現するため、Vue Routerのような各種Routerライブラリが開発されました。これらのライブラリによって、History APIは隠蔽された形で利用されています。
+To avoid these issues and effectively implement client-side routing, various router libraries like Vue Router have been developed. These libraries utilize the History API in a hidden manner.
 
-Routerによりブラウザに画面遷移を通知することは可能ですが、その通知をどのタイミングで行うべきかの情報はブラウザから提供されていません。これが意味するのは、わざと通知のタイミングをずらすような実装、例えば `setTimeout` を使用するようなもの、が必要になってしまいます。
+While routers allow you to notify the browser about screen transitions, the browser does not provide information on when exactly this notification should be sent. This means that implementations that deliberately delay the timing of the notification, such as using `setTimeout`, are necessary.
 
-そうした問題を解決するために新たに策定されているものが[Navigation API](https://developer.mozilla.org/en-US/docs/Web/API/Navigation_API)です。
+A new solution being formulated to address these challenges is the [Navigation API](https://developer.mozilla.org/en-US/docs/Web/API/Navigation_API).
 
-Navigation APIはHistory APIでは解決できなかったクライアントサイドルーティングの問題点を解消してくれます。
+The Navigation API resolves issues with client-side routing that could not be addressed by the History API.
 
-このAPIを利用することで、画面遷移の開始と終了のタイミングを通知することができ、インターセプトを利用してスクロール位置の復元やフォーカス位置の調整なども行うことが可能になります。
+By utilizing this API, you can be notified about the start and end of screen transitions, and it becomes possible to use interceptors for restoring scroll positions and adjusting focus locations, among other functionalities.
 
-特に、ページを進めるだけでなく、戻るボタンを使用した際やページのリロード時など、様々なシチュエーションで役立ちそうな機能があります。これにより、アクセシビリティを担保したユーザー体験の向上が期待できます。
+In particular, there are useful features for various situations, not only when moving forward through pages, but also when using the back button, reloading the page, and more. This is expected to enhance the user experience while ensuring accessibility.
 
-2023年10月現在、Chromeでは実装されており動作するようになっていますが、SafariやFirefoxではまだ実装されていません。
+As of October 2023, it has been implemented and is operational in Chrome, but it has not yet been implemented in Safari or Firefox.
 
-![スクリーンショット：Can I UseでのNavigation APIにまつわるブラウザ対応表](../images/caniuse-navigation-api.png)
+![Screenshot: Browser Compatibility Chart for Navigation API on Can I Use](../images/caniuse-navigation-api.png)
 
-しかし、ウェブの相互運用性を向上させることを目的としたプロジェクト「[Interop](https://github.com/web-platform-tests/interop)」において、各モダンブラウザで使用可能となるよう注力されているAPIの一つとして[投票されています](https://github.com/web-platform-tests/interop/issues/435)。
+However, the Navigation API is one of the APIs currently being focused on to enhance web interoperability as part of the [Interop](https://github.com/web-platform-tests/interop) project, aimed at improving the interoperability across various web browsers. It has been [voted on](https://github.com/web-platform-tests/interop/issues/435) as an API to be made available across all modern browsers.
 
-過去に注力されたAPIの例としては、Container Queries、Inert属性、スクロールに関するCSSプロパティなどがありました。
+Examples of APIs that have been a focus in the past include Container Queries, the Inert attribute, and various CSS properties related to scrolling.
 
-こちらの対応状況については今のところ予測が難しい部分もありますが、各モダンブラウザにおいて取り入れられるのはそう遠くはなさそうだと期待されています。
+While it is somewhat difficult to predict the exact status of support at this time, it is expected that this API will be adopted across all modern browsers in the near future.
 
-## おわりに
+## Conclusion
 
-いかがだったでしょうか。
+What did you think of today’s topic?
 
-今回のテーマが、これまで知らなかった方々にとって新たな学びとなり、役立つ情報が得られたならば、それは大変嬉しく思います。
+I hope this article has provided new insights and useful information for those who were unfamiliar with these concepts.
 
-お話しした内容が、皆様にとって知らなかったことも多いかもしれません。そのため、少し複雑に感じる部分があるかもしれませんが、ご一緒に考えていただければ幸いです。
+The topics we covered may have been new to many of you, and thus might seem a bit complex. However, I would be grateful if we could think through these issues together.
 
-最初にも触れましたが、ウェブサイトは元々アクセシブルな作りとなっていました。しかし、近年のフロントエンド開発の進化によってクライアントサイドルーティングが主流となり、以前は問題視されなかった多くのアクセシビリティの問題が表面化してきています。
+As I mentioned at the beginning, websites were originally designed to be accessible. However, with the evolution of frontend development, client-side routing has become mainstream, bringing to the surface many accessibility issues that were previously overlooked.
 
-サーバーサイドルーティングでは問題とならなかったアクセシビリティの課題が、クライアントサイドルーティングの導入により顕在化しているとも言えるでしょう。
+One could argue that the accessibility challenges that were not a concern with server-side routing have become apparent with the introduction of client-side routing.
 
-誤解を恐れずに言うとクライアントサイドルーティングと言う選択肢には、既存のウェブの利点をあえて捨て去り、ゼロから複雑さに挑戦するという覚悟が必要だと私は考えています。
 
-しかし、これは決して**クライアントサイドルーティングを使ってはいけない**と言いたいわけではありません。
+To speak frankly, without fear of misunderstanding, I believe choosing client-side routing requires a readiness to willingly discard the existing advantages of the web and embrace complexity from scratch.
 
-クライアントサイドで複雑な状態を管理し、優れたユーザー体験を提供するためには、クライアントサイドルーティングのような技術が今もなお必要とされています。それらを利用することで実現可能な新しい体験や価値を、私たち開発者は追求し続けるべきだと考えています。
+However, **this is by no means an argument against the use of client-side routing**.
 
-アクセシビリティを考えることは個々の開発者にとって非常に重要ですが、使用しているフレームワーク自体がアクセシビリティをどのように取り扱っているかを理解することも重要です。
+Managing complex states on the client-side and providing an excellent user experience still necessitates technologies like client-side routing. As developers, we should continue to seek out the new experiences and values that can be realized through their use.
 
-最後に、Nuxt.jsにおけるアクセシビリティの取り組みについて触れてこの発表を終わろうと思います。
+Thinking about accessibility is crucial for individual developers, but it’s also important to understand how the frameworks we use handle accessibility.
 
-実は[Nuxt.jsのロードマップ](https://nuxt.com/docs/community/roadmap)を調べると、アクセシビリティに関連する項目が含まれていることが分かります。これは皆さんにとって嬉しい情報かもしれません。
+Finally, I would like to conclude this presentation by touching upon the initiatives towards accessibility in Nuxt.js.
 
-![スクリーンショット：Nuxt.jsのアクセシビリティロードマップが書かれたGitHub Issueページ](../images/nuxt-a11y-load-map.png)
+In fact, if you look at the [Nuxt.js roadmap](https://nuxt.com/docs/community/roadmap), you will find items related to accessibility. This might be pleasing information for all of you.
 
-例えば、先ほど紹介したARIAライブリージョンの実装や、アクセシビリティテストエンジンである「[axe-core](https://github.com/dequelabs/axe-core)」をビルトインする、ナビゲーション時のフォーカス管理など、様々なタスクが挙げられています。
+![Screenshot: The GitHub Issue page detailing Nuxt.js’s accessibility roadmap](../images/nuxt-a11y-load-map.png)
 
-今後、Nuxt.jsのアクセシビリティへの取り組みに・ロードマップの進展を見守りつつ、私たち自身もアクセシビリティ向上のために努めていく必要があると思っております。
+For example, tasks such as implementing ARIA live regions, which I introduced earlier, integrating the accessibility testing engine "[axe-core](https://github.com/dequelabs/axe-core)", and managing focus during navigation are all listed.
 
-以上で発表を終わります。ご清聴いただきありがとうございました。
+In the future, while keeping an eye on the progress of Nuxt.js’s accessibility efforts and roadmap, we ourselves also need to strive for improving accessibility.
 
-## 参考資料
+This concludes my presentation. Thank you for your attention.
+
+## Reference
 
 * [ウェブアクセシビリティ導入ガイドブック｜デジタル庁](https://www.digital.go.jp/resources/introduction-to-web-accessibility-guidebook)
 * [第3回支援技術利用状況調査報告書 | 日本視覚障害者ICTネットワーク](https://jbict.net/survey/at-survey-03)
@@ -466,7 +467,7 @@ Navigation APIはHistory APIでは解決できなかったクライアントサ�
 * [Transitions · Get Started with Nuxt](https://nuxt.com/docs/getting-started/transitions#view-transitions-api-experimental)
 * [What we learned from user testing of accessible client-side routing techniques with Fable Tech Labs | Gatsby](https://www.gatsbyjs.com/blog/2019-07-11-user-testing-accessible-client-routing/)
   * [Accessible JavaScript Routing Prototypes](https://marcy.codes/prototypes/routing/index.html)
-* [Preferreds-reduced-motion: 動きが少ないほうがよい場合もあります  |  Articles  |  web.dev](https://web.dev/articles/prefers-reduced-motion?hl=ja)
+[prefers-reduced-motion: Sometimes less movement is more  |  Articles  |  web.dev](https://web.dev/articles/prefers-reduced-motion)
 * [Smooth and simple transitions with the View Transitions API - Chrome for Developers](https://developer.chrome.com/docs/web-platform/view-transitions/)
 * [Navigation API による「JS での画面遷移」と SPA の改善 | blog.jxck.io](https://blog.jxck.io/entries/2022-04-22/navigation-api.html)
 * [Accessibility roadmap · Issue #23255 · nuxt/nuxt](https://github.com/nuxt/nuxt/issues/23255)
