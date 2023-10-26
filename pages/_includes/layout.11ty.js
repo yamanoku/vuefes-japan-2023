@@ -8,7 +8,7 @@ exports.render = (data) => {
         <title>${data.title}</title>
         <meta name="og:title" content="${data.title}">
         <meta name="og:description" content="${data.description}">
-        <meta name="og:image" content="ttps://yamanoku.net/vuefes-japan-2023/images/ogp.png">
+        <meta name="og:image" content="https://yamanoku.net/vuefes-japan-2023/images/ogp.png">
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@yamanoku">
         <meta name="twitter:image:alt" content="How to make Nuxt applications accessible based on page transitions">
