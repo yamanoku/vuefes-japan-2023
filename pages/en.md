@@ -27,13 +27,13 @@ In addition, I am a father of one child, and I have a Golden Retriever and three
 
 Before we get to the main topic, let me explain what **web accessibility**, which is related to today’s theme, is all about.
 
-Accessibility is a word that combines "access" and "ability," and it is used to mean making information, products, and services available. It is sometimes abbreviated as *A11y*.
+Accessibility is a word that combines "access" and "ability", and it is used to mean making information, products, and services available. It is sometimes abbreviated as *A11y*.
 
 ![Access + Ability = Accessibility (A11y)](../images/accessibility-a11y.png)
 
-Web accessibility refers to accessibility in the context of the web, and it is defined as "the ability for users to access information and services provided on the web, regardless of the presence or extent of disabilities, age, or usage environment, or the degree of accessibility to those resources."
+Web accessibility refers to accessibility in the context of the web, and it is defined as "the ability for users to access information and services provided on the web, regardless of the presence or extent of disabilities, age, or usage environment, or the degree of accessibility to those resources".
 
-When discussing web accessibility, there is an important point that should be understood first: "Originally, the web is supposed to be accessible."
+When discussing web accessibility, there is an important point that should be understood first: "Originally, the web is supposed to be accessible".
 
 Please recall the period during the COVID-19 pandemic when many people were forced to work remotely. During that time, we were able to obtain and disseminate information online.
 
