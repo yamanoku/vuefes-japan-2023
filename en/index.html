@@ -62,7 +62,7 @@
 <p>Taking preemptive improvement measures can facilitate the smooth provision of reasonable accommodations to individuals with disabilities in various situations. This is referred to as <strong>Environmental Adjustment</strong>.</p>
 <p>For example, in situations where communication with a person who has a hearing impairment is necessary, preparing input devices such as tablets in advance enables them to input by themselves, eliminating the need for assistance or external support each time.</p>
 <p>Web accessibility is positioned not as reasonable accommodation itself, but as a form of environmental adjustment, undertaken as a preemptive measure.</p>
-<p>As explained in the previous section on reasonable accommodations, even matters that could only be addressed via phone calls or writing can now be handled asynchronously through the web, enabling individuals to make inquiries or input by themselves using assistive technologies.</p>
+<p>As explained in the previous section on reasonable accommodations, even matters that could only be addressed via phone calls or writing can now be handled asynchronously through the web, enabling individuals to make inquiries or input.</p>
 <p>By achieving web accessibility, an increase in user satisfaction is expected, along with a reduction in inquiries and improved overall work efficiency.</p>
 <p>Understanding the importance of web accessibility, there's something crucial we need to revisit.</p>
 <p>It’s about whether the applications we have developed in the past, and are currently developing, using Vue.js or Nuxt.js, are actually accessible.</p>
@@ -94,8 +94,9 @@
 <p>With the increasing number of techniques available for smooth page transitions, and with the barriers to implementation becoming lower, I believe that client-side routing has become more accessible than when single-page applications first started to appear.</p>
 <h2>Accessibility Issues in Page Transitions</h2>
 <p>While client-side routing has become more convenient and accessible, there are accessibility issues that can be overlooked due to this technology. Next, we will introduce these issues and discuss potential solutions.</p>
-<h3>Support Technologies May Not Detect Changes</h3>
-<p>Firstly, there is an issue where support technologies may not detect what has changed. This is one of the most difficult problems to notice when considering the accessibility of page transitions.</p>
+<h3>Assistive Technologies May Not Detect Changes</h3>
+<p>Firstly, there is an issue where assistive technologies may not detect what has changed. This is one of the most difficult problems to notice when considering the accessibility of page transitions.</p>
+<p>Assistive technology refers to the collective term for hardware and software used as aids to help people with disabilities utilize and operate web.</p>
 <p>Although visually it might be clear which part of the screen has changed during a client-side routing transition, users who rely on assistive technologies to navigate the page may find it difficult to notice these changes.</p>
 <p>Let's take a look at how client-side routing works using a screen reader, a type of assistive technology that reads out the content on the screen.</p>
 <p><video src="../videos/demo-movie-01.mov" controls style="width: 100%; border: 1px solid var(--y-image-border-color);"></video></p>
@@ -163,7 +164,7 @@ watch(
 <li><a href="https://github.com/elk-zone/elk/blob/5d09e7d2ab473d3fe049ace8468455baa18de9b2/components/aria/AriaAnnouncer.vue" target="_blank" rel="noopener">elk/components/aria/AriaAnnouncer.vue</a></li>
 </ul>
 <p>When using assistive technologies to navigate the page, you can hear the current page title announced after the page has loaded.</p>
-<p>The source code is publicly available, so if you're interested, feel free to check it out and see how the application functions in real-time.</p>
+<p>The source code is available to the public, so if you are interested, feel free to check out how the actual application operates.</p>
 <h3>Focus Management</h3>
 <p>Next, let's talk about keyboard navigation when the page transitions.</p>
 <p>With keyboard navigation, there are various actions like deciding on items with the Enter or Space key, moving between items using the arrow keys, or canceling an action with the Escape key.</p>
@@ -279,14 +280,14 @@ mediaQuery.addEventListener('change', () =&gt; {
 <p>What did you think of today’s topic?</p>
 <p>I hope this article has provided new insights and useful information for those who were unfamiliar with these concepts.</p>
 <p>The topics we covered may have been new to many of you, and thus might seem a bit complex. However, I would be grateful if we could think through these issues together.</p>
-<p>As I mentioned at the beginning, websites were originally designed to be accessible. However, with the evolution of frontend development, client-side routing has become mainstream, bringing to the surface many accessibility issues that were previously overlooked.</p>
+<p>As I mentioned at the beginning, websites were originally design to be accessible. However, with the evolution of frontend development, client-side routing has become mainstream, bringing to the surface many accessibility issues that were previously overlooked.</p>
 <p>One could argue that the accessibility challenges that were not a concern with server-side routing have become apparent with the introduction of client-side routing.</p>
 <p>To speak frankly, without fear of misunderstanding, I believe choosing client-side routing requires a readiness to willingly discard the existing advantages of the web and embrace complexity from scratch.</p>
 <p>However, <strong>this is by no means an argument against the use of client-side routing</strong>.</p>
 <p>Managing complex states on the client-side and providing an excellent user experience still necessitates technologies like client-side routing. As developers, we should continue to seek out the new experiences and values that can be realized through their use.</p>
 <p>Thinking about accessibility is crucial for individual developers, but it’s also important to understand how the frameworks we use handle accessibility.</p>
 <p>Finally, I would like to conclude this presentation by touching upon the initiatives towards accessibility in Nuxt.js.</p>
-<p>In fact, if you look at the <a href="https://nuxt.com/docs/community/roadmap" target="_blank" rel="noopener">Nuxt.js roadmap</a>, you will find items related to accessibility. This might be pleasing information for all of you.</p>
+<p>In fact, if you look at the <a href="https://nuxt.com/docs/community/roadmap" target="_blank" rel="noopener">Nuxt.js roadmap</a>, you will find items related to accessibility.</p>
 <p><img src="../images/nuxt-a11y-load-map.png" alt="Screenshot: The GitHub Issue page detailing Nuxt.js’s accessibility roadmap"></p>
 <p>For example, tasks such as implementing ARIA live regions, which I introduced earlier, integrating the accessibility testing engine &quot;<a href="https://github.com/dequelabs/axe-core" target="_blank" rel="noopener">axe-core</a>&quot;, and managing focus during navigation are all listed.</p>
 <p>In the future, while keeping an eye on the progress of Nuxt.js’s accessibility efforts and roadmap, we ourselves also need to strive for improving accessibility.</p>
