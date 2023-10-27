@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>画面遷移から考えるNuxtアプリケーションをアクセシブルにする方法</title>
         <meta name="og:title" content="画面遷移から考えるNuxtアプリケーションをアクセシブルにする方法">
-        <meta name="og:description" content="やまのくの Vue Fes Japan 2023 の登壇資料">
+        <meta name="og:description" content="やまのくのVue Fes Japan 2023の登壇資料">
         <meta name="og:image" content="https://yamanoku.net/vuefes-japan-2023/images/ogp.png">
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@yamanoku">
@@ -28,7 +28,7 @@
 <p>はじめに自己紹介です。</p>
 <img src="../images/yamanoku-icon.png" alt="写真：やまのく" width="256" height="256">
 <p><a href="https://yamanoku.net" target="_blank" rel="noopener">やまのく</a>と申します。</p>
-<p><a href="https://crowdworks.co.jp/" target="_blank" rel="noopener">株式会社クラウドワークス</a>にて、 フロントエンドエンジニアとして施策の開発やデザインシステムの開発にも携わっておりました。現在は技術的負債解消をリードするチームに所属し、レガシーフロントエンド環境の刷新に関わっております。</p>
+<p><a href="https://crowdworks.co.jp/" target="_blank" rel="noopener">株式会社クラウドワークス</a>にて、フロントエンドエンジニアとして施策の開発やデザインシステムの開発にも携わっておりました。現在は技術的負債解消をリードするチームに所属し、レガシーフロントエンド環境の刷新に関わっております。</p>
 <p>ウェブの仕様についてやウェブアクセシビリティにまつわることに興味があります。</p>
 <p>また、一児の父でゴールデン・レトリバーと3匹の猫の飼い主をやっております。</p>
 <p>本題に入る前に今回のテーマに関わる<strong>ウェブアクセシビリティ</strong>とはなにかを説明します。</p>
@@ -58,8 +58,7 @@
 <p><strong>合理的配慮</strong>とは、障害を持つ人が社会に参加する際に必要な特別な支援や調整を指します。これにはさまざまな形があります。</p>
 <p>例として、障害を持つ人が筆記が難しい場合に代筆をしてもらう、コミュニケーションを取る際に、絵カードや写真カードやタブレット端末を使用してみる、肢体不自由な人が移動する際には、移動のサポートを提供することも合理的配慮の一環と言えます。</p>
 <p>合理的配慮は、障害を持つ人が困難を感じた際、その人の個別のニーズに応じて無理のない範囲で対応していく必要があります。</p>
-<p>ですが、合理的配慮が必要な人との関係が長期にわたる場合、毎回対応をすることが双方にとって負担となることがあります。
-この負担を減らすため、効率的かつ持続可能なサポート方法を検討することが欠かせません。</p>
+<p>ですが、合理的配慮が必要な人との関係が長期にわたる場合、毎回対応をすることが双方にとって負担となることがあります。この負担を減らすため、効率的かつ持続可能なサポート方法を検討することが欠かせません。</p>
 <p>事前に改善措置を施しておくことで、さまざまな場面で障害を持つ個々の人々への合理的配慮をスムーズに行えるようになるのですが、これを<strong>環境の整備</strong>と言います。</p>
 <p>例えば、聴覚障害者と筆談でコミュニケーションを取る必要がある状況では、タブレットなどの入力装置を準備しておくことで、その人自身が入力できるようにし、都度の対応や外部からの支援を必要としなくなります。</p>
 <p>ウェブアクセシビリティは、合理的配慮そのものではなく、事前的な措置として行う環境の整備で行うためのものとしての位置づけです。</p>
@@ -69,7 +68,7 @@
 <p>それは私たちがこれまでに作ってきた、そして現在作っているVue.jsやNuxt.jsを使用したアプリケーションが実際にアクセシブルであるかどうか、ということです。</p>
 <p>前回のVue Fes Japanでは「<a href="https://yamanoku.net/vuefes-japan-online-2022/ja/" target="_blank" rel="noopener">Vue.jsでアクセシブルなコンポーネントをつくるために</a>」をテーマに、誤ったアクセシビリティ対応についてや、Vue.jsの強みを活かしたアクセシビリティへの配慮とテストについて話させていただきました。</p>
 <p>その際<a href="https://webaim.org/" target="_blank" rel="noopener">WebAIM</a>という団体によるクライアントサイドフレームワークのアクセシビリティの対応状況を取り上げました。</p>
-<p><img src="../images/the-webaim-million-2023.png" alt="The WebAIM Million 2023 の JavaScript フレームワークの結果。Vue.js でのアクセシビリティ対応は平均より 20.9% も低い結果が出ている"></p>
+<p><img src="../images/the-webaim-million-2023.png" alt="The WebAIM Million 2023のJavaScriptフレームワークの結果。Vue.jsでのアクセシビリティ対応は平均より20.9%も低い結果が出ている"></p>
 <p>数字は改善傾向にありますが、2023年時点でも結果がまだ悪いことが私個人としては気になっています。</p>
 <p>私を含むVue.jsやNuxt.jsを用いる開発者たちが、ウェブアクセシビリティを正確に考慮した開発を継続できるよう、今回の発表でもその点を話すことができればと考えています。</p>
 <p>今回は「画面遷移」におけるアクセシビリティに焦点を当てて話を進めていきたいと思います。</p>
@@ -137,7 +136,7 @@ watch(
 <pre><code class="language-html">&lt;p
   role=&quot;status&quot;
   aria-live=&quot;assertive&quot;
-  class=&quot;sr-only&quot;
+  class=&quot;visually-hidden&quot;
 &gt;
   ｛｛ message ｝｝
 &lt;/p&gt;
@@ -155,11 +154,11 @@ watch(
   white-space: nowrap;
 }
 </code></pre>
-<p>ここで注意することとしては <code>display: none</code> で非表示にすると支援技術では存在を検知できないため<strong>視覚的にだけ</strong>見えないようにする必要があります。このスタイル手法は通称 <a href="https://www.a11yproject.com/posts/how-to-hide-content/" target="_blank" rel="noopener">Visually Hidden</a> と呼ばれているものです。</p>
+<p>ここで注意することとしては <code>display: none</code> で非表示にすると支援技術では存在を検知できないため<strong>視覚的にだけ</strong>見えないようにする必要があります。このスタイル手法は通称<a href="https://www.a11yproject.com/posts/how-to-hide-content/" target="_blank" rel="noopener">Visually Hidden</a>と呼ばれているものです。</p>
 <p>それでは変更したものを一緒に見てみましょう。</p>
 <p><video src="../videos/demo-movie-02.mov" controls style="width: 100%; border: 1px solid var(--y-image-border-color);"></video></p>
 <p>このようにしてリンクが押された場合に画面が切り替わっていることを通知できるようになりました。</p>
-<p>Nuxt.js で作られたマストドンクライアントの「<a href="https://github.com/elk-zone/elk" target="_blank" rel="noopener">elk</a>（エルク）」ではこの手法をコンポーネントとして活用しています。</p>
+<p>Nuxt.jsで作られたマストドンクライアントの「<a href="https://github.com/elk-zone/elk" target="_blank" rel="noopener">elk</a>（エルク）」ではこの手法をコンポーネントとして活用しています。</p>
 <ul>
 <li><a href="https://github.com/elk-zone/elk/blob/5d09e7d2ab473d3fe049ace8468455baa18de9b2/components/aria/AriaAnnouncer.vue" target="_blank" rel="noopener">elk/components/aria/AriaAnnouncer.vue</a></li>
 </ul>
@@ -173,13 +172,14 @@ watch(
 <p>ページ下部に位置するリンクを選択した際には、確かに画面のコンテンツは更新されますが、フォーカスの移動すると、以前の位置、すなわち下部のリンクからの移動となってしまいます。</p>
 <p>状況によってこれが問題とならないこともありますが、今回のデモで示すような状況ではこの挙動が非常に不都合であることがはっきりと分かります。</p>
 <p>こうした問題を解消するため、次に移動してほしい要素へフォーカスするための処理を挟む必要があります。</p>
-<p>Vue.js での対象の要素を取得する場合、<code>ref</code> を使用しテンプレート参照します。</p>
+<p>Vue.jsでの対象の要素を取得する場合、<code>ref</code> を使用しテンプレート参照します。</p>
 <pre><code class="language-ts">const focusedRef = ref&lt;HTMLElement&gt;();
 </code></pre>
 <p>タブキーを使用したフォーカス移動の際には、<code>a</code> 要素や <code>button</code> 要素のようなものはデフォルトでフォーカスを受け入れることができますが、フォーカスできないものもあります。</p>
 <p>この問題を解決するためには、<code>tabindex</code> 属性を使用することで、要素へフォーカス可能になるよう設定できます。</p>
-<pre><code class="language-ts">const announceRoute = () =&gt; {
+<pre><code class="language-ts">onMounted(() =&gt; {
   if (focusedRef.value) {
+    focusedRef.value.tabIndex = -1;
     focusedRef.value.focus();
   }
 };
@@ -191,7 +191,7 @@ watch(
 <p><video src="../videos/demo-movie-04.mp4" controls style="width: 100%; border: 1px solid var(--y-image-border-color);"></video></p>
 <p>気付きづらいかもしれませんが、<code>main</code> 要素にフォーカスが当たると、内包する全ての内容を一度に読み上げてしまいます。</p>
 <p>今回は <code>main</code> 要素内のものが少ないため読み上げるものはわずかでしたが、実際の場合はこれよりも多いコンテンツがあることが想定されます。</p>
-<p>これは Windows で利用できる <a href="https://www.nvda.jp/" target="_blank" rel="noopener">NVDA</a> というスクリーンリーダーでの結果です。一方で macOS のスクリーンリーダーではこのような読み上げ方をしませんが、デバイスやOSによってスクリーンリーダーの挙動は異なるため、注意が必要です。</p>
+<p>これはWindowsで利用できる<a href="https://www.nvda.jp/" target="_blank" rel="noopener">NVDA</a>というスクリーンリーダーでの結果です。一方でmacOSのスクリーンリーダーではこのような読み上げ方をしませんが、デバイスやOSによってスクリーンリーダーの挙動は異なるため、注意が必要です。</p>
 <p>では、この問題を解決するためにはどうしたらよいのでしょうか。</p>
 <p>対象が大きすぎて全体を一度に読み上げてしまうのであれば、フォーカス対象の要素を小さくしてみるのが一つの方法です。</p>
 <p><video src="../videos/demo-movie-05.mp4" controls style="width: 100%; border: 1px solid var(--y-image-border-color);"></video></p>
@@ -252,7 +252,7 @@ mediaQuery.addEventListener('change', () =&gt; {
 視差効果を無効化する場合だけでなく、他のケースでも同様です。</p>
 <p>コード上での変更を完了しただけで満足するのではなく、変更が意図通りに機能しているかを必ず確認してください。</p>
 <p>以上がNuxt.jsにおける画面遷移についてのアクセシビリティについてでした。</p>
-<h2>画面遷移を Web API から解決する</h2>
+<h2>画面遷移をWeb APIから解決する</h2>
 <p>次に、Routerライブラリやフレームワークに依存しない、将来のクライアントサイドルーティングでの開発に活用できるWeb APIについて紹介していきます。</p>
 <p>画面遷移に関連するWeb APIとして、多くの方が<a href="https://developer.mozilla.org/ja/docs/Web/API/History_API" target="_blank" rel="noopener">History API</a>についてを思い浮かべるでしょう。</p>
 <p>かつて「Pjax」と呼ばれる<code>pushState</code>とAjaxを組み合わせたページ遷移に関する技術が利用されていました。ここで言及される<code>pushState</code>は、History APIのメソッドの一つです。</p>
@@ -272,7 +272,7 @@ mediaQuery.addEventListener('change', () =&gt; {
 <p>このAPIを利用することで、画面遷移の開始と終了のタイミングを通知することができ、インターセプトを利用してスクロール位置の復元やフォーカス位置の調整なども行うことが可能になります。</p>
 <p>特に、ページを進めるだけでなく、戻るボタンを使用した際やページのリロード時など、様々なシチュエーションで役立ちそうな機能があります。これにより、アクセシビリティを担保したユーザー体験の向上が期待できます。</p>
 <p>2023年10月現在、Chromeでは実装されており動作するようになっていますが、SafariやFirefoxではまだ実装されていません。</p>
-<p><img src="../images/caniuse-navigation-api.png" alt="スクリーンショット：Can I Use での Navigation API にまつわるブラウザ対応表"></p>
+<p><img src="../images/caniuse-navigation-api.png" alt="スクリーンショット：Can I UseでのNavigation APIにまつわるブラウザ対応表"></p>
 <p>しかし、ウェブの相互運用性を向上させることを目的としたプロジェクト「<a href="https://github.com/web-platform-tests/interop" target="_blank" rel="noopener">Interop</a>」において、各モダンブラウザで使用可能となるよう注力されているAPIの一つとして<a href="https://github.com/web-platform-tests/interop/issues/435" target="_blank" rel="noopener">投票されています</a>。</p>
 <p>過去に注力されたAPIの例としては、Container Queries、Inert属性、スクロールに関するCSSプロパティなどがありました。</p>
 <p>こちらの対応状況については今のところ予測が難しい部分もありますが、各モダンブラウザにおいて取り入れられるのはそう遠くはなさそうだと期待されています。</p>
