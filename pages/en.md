@@ -19,7 +19,7 @@ First, let me introduce myself.
 
 My name is [yamanoku](https://yamanoku.net).
 
-I was engaged in the development of initiatives and the development of design systems as a front-end engineer at [CrowdWorks, Inc](https://crowdworks.co.jp/). Currently, I belong to a team leading the resolution of technical debt and am involved in refreshing the legacy front-end environment.
+I was engaged in the development of initiatives and the development of design systems as a front-end engineer at [CrowdWorks, Inc](https://crowdworks.co.jp/en/). Currently, I belong to a team leading the resolution of technical debt and am involved in refreshing the legacy front-end environment.
 
 I am interested in web specifications and issues related to web accessibility.
 
