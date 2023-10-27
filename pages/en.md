@@ -77,7 +77,7 @@ For example, in situations where communication with a person who has a hearing i
 
 Web accessibility is positioned not as reasonable accommodation itself, but as a form of environmental adjustment, undertaken as a preemptive measure.
 
-As explained in the previous section on reasonable accommodations, even matters that could only be addressed via phone calls or writing can now be handled asynchronously through the web, enabling individuals to make inquiries or input by themselves using assistive technologies.
+As explained in the previous section on reasonable accommodations, even matters that could only be addressed via phone calls or writing can now be handled asynchronously through the web, enabling individuals to make inquiries or input.
 
 By achieving web accessibility, an increase in user satisfaction is expected, along with a reduction in inquiries and improved overall work efficiency.
 
@@ -134,9 +134,11 @@ With the increasing number of techniques available for smooth page transitions, 
 
 While client-side routing has become more convenient and accessible, there are accessibility issues that can be overlooked due to this technology. Next, we will introduce these issues and discuss potential solutions.
 
-### Support Technologies May Not Detect Changes
+### Assistive Technologies May Not Detect Changes
 
-Firstly, there is an issue where support technologies may not detect what has changed. This is one of the most difficult problems to notice when considering the accessibility of page transitions.
+Firstly, there is an issue where assistive technologies may not detect what has changed. This is one of the most difficult problems to notice when considering the accessibility of page transitions.
+
+Assistive technology refers to the collective term for hardware and software used as aids to help people with disabilities utilize and operate web.
 
 Although visually it might be clear which part of the screen has changed during a client-side routing transition, users who rely on assistive technologies to navigate the page may find it difficult to notice these changes.
 
@@ -232,7 +234,7 @@ The Mastodon client for Nuxt.js, "[elk](https://github.com/elk-zone/elk)", utili
 
 When using assistive technologies to navigate the page, you can hear the current page title announced after the page has loaded.
 
-The source code is publicly available, so if you're interested, feel free to check it out and see how the application functions in real-time.
+The source code is available to the public, so if you are interested, feel free to check out how the actual application operates.
 
 ### Focus Management
 
@@ -429,10 +431,9 @@ I hope this article has provided new insights and useful information for those w
 
 The topics we covered may have been new to many of you, and thus might seem a bit complex. However, I would be grateful if we could think through these issues together.
 
-As I mentioned at the beginning, websites were originally designed to be accessible. However, with the evolution of frontend development, client-side routing has become mainstream, bringing to the surface many accessibility issues that were previously overlooked.
+As I mentioned at the beginning, websites were originally design to be accessible. However, with the evolution of frontend development, client-side routing has become mainstream, bringing to the surface many accessibility issues that were previously overlooked.
 
 One could argue that the accessibility challenges that were not a concern with server-side routing have become apparent with the introduction of client-side routing.
-
 
 To speak frankly, without fear of misunderstanding, I believe choosing client-side routing requires a readiness to willingly discard the existing advantages of the web and embrace complexity from scratch.
 
@@ -444,7 +445,7 @@ Thinking about accessibility is crucial for individual developers, but it’s al
 
 Finally, I would like to conclude this presentation by touching upon the initiatives towards accessibility in Nuxt.js.
 
-In fact, if you look at the [Nuxt.js roadmap](https://nuxt.com/docs/community/roadmap), you will find items related to accessibility. This might be pleasing information for all of you.
+In fact, if you look at the [Nuxt.js roadmap](https://nuxt.com/docs/community/roadmap), you will find items related to accessibility.
 
 ![Screenshot: The GitHub Issue page detailing Nuxt.js’s accessibility roadmap](../images/nuxt-a11y-load-map.png)
 
