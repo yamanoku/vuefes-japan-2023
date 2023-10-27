@@ -75,7 +75,7 @@
 <p>Thank you once again for your attention.</p>
 <h3>The Technique of Client-Side Routing</h3>
 <p>First and foremost, let's delve into the concept of <strong>Client-Side Routing</strong>.</p>
-<p>In typical screen transitions, the server-side generates new page HTML and sends it to the client for display. This is considered the standard form of routing. On the other hand, client-side routing is a technique that completes all processes on the client side.</p>
+<p>In typical page transitions, the server-side generates new page HTML and sends it to the client for display. This is considered the standard form of routing. On the other hand, client-side routing is a technique that completes all processes on the client side.</p>
 <p>This method is utilized in Single Page Applications or when dynamically updating a portion of the screen.</p>
 <p>Client-side routing offers several advantages:</p>
 <ul>
@@ -89,20 +89,20 @@
 <p>Please note that if you use it as is, it will only work in browsers that support the View Transitions API, since there is no fallback for browsers that do not support it at this time.</p>
 <p>Let's take a look at an actual demo.</p>
 <p><video src="https://user-images.githubusercontent.com/904724/231222082-6bd4aeae-3026-407e-b3be-658df6305748.mp4" controls style="width: 100%; border: 1px solid var(--y-image-border-color);" loop></video></p>
-<p>With each screen transition, you can see an effect as if the clicked target area is expanding.</p>
-<p>Because you can add transition effects between two different elements, it becomes possible to achieve even more advanced screen transitions, beyond what was possible with transitions across entire pages or single components.</p>
-<p>With the increasing number of techniques available for smooth screen transitions, and with the barriers to implementation becoming lower, I believe that client-side routing has become more accessible than when single-page applications first started to appear.</p>
+<p>With each page transition, you can see an effect as if the clicked target area is expanding.</p>
+<p>Because you can add transition effects between two different elements, it becomes possible to achieve even more advanced page transitions, beyond what was possible with transitions across entire pages or single components.</p>
+<p>With the increasing number of techniques available for smooth page transitions, and with the barriers to implementation becoming lower, I believe that client-side routing has become more accessible than when single-page applications first started to appear.</p>
 <h2>Accessibility Issues in Page Transitions</h2>
 <p>While client-side routing has become more convenient and accessible, there are accessibility issues that can be overlooked due to this technology. Next, we will introduce these issues and discuss potential solutions.</p>
 <h3>Support Technologies May Not Detect Changes</h3>
-<p>Firstly, there is an issue where support technologies may not detect what has changed. This is one of the most difficult problems to notice when considering the accessibility of screen transitions.</p>
+<p>Firstly, there is an issue where support technologies may not detect what has changed. This is one of the most difficult problems to notice when considering the accessibility of page transitions.</p>
 <p>Although visually it might be clear which part of the screen has changed during a client-side routing transition, users who rely on assistive technologies to navigate the page may find it difficult to notice these changes.</p>
 <p>Let's take a look at how client-side routing works using a screen reader, a type of assistive technology that reads out the content on the screen.</p>
 <p><video src="../videos/demo-movie-01.mov" controls style="width: 100%; border: 1px solid var(--y-image-border-color);"></video></p>
 <p>As we can see, even though the page visually transitions correctly, users utilizing screen readers may not be notified of these changes.</p>
 <p>How can we circumvent this issue?</p>
 <p>One solution involves leveraging WAI-ARIA, a set of technical specifications for making web content more accessible. Within WAI-ARIA, there is a feature called <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions" target="_blank" rel="noopener">ARIA Live Region</a>, which is used to notify users of dynamic content changes.</p>
-<p>An accessible method to notify users during screen transitions is to use ARIA Live Regions to announce changes in the <code>title</code> element.</p>
+<p>An accessible method to notify users during page transitions is to use ARIA Live Regions to announce changes in the <code>title</code> element.</p>
 <p>Let's delve into the specific techniques.</p>
 <p>First, specify the page's <code>title</code> using <code>useHead</code> at a page level.</p>
 <pre><code class="language-ts">useHead({
@@ -157,7 +157,7 @@ watch(
 <p>A critical point to note here is that hiding the element using <code>display: none</code> would render it undetectable by assistive technologies. Therefore, you must hide it <strong>visually only</strong>. This styling technique is commonly referred to as <a href="https://www.a11yproject.com/posts/how-to-hide-content/" target="_blank" rel="noopener">Visually Hidden</a>.</p>
 <p>Now, let's take a look at the changes together.</p>
 <p><video src="../videos/demo-movie-02.mov" controls style="width: 100%; border: 1px solid var(--y-image-border-color);"></video></p>
-<p>Thus, we have established a way to notify users when a link is clicked and the screen transitions.</p>
+<p>Thus, we have established a way to notify users when a link is clicked and the page transitions.</p>
 <p>The Mastodon client for Nuxt.js, &quot;<a href="https://github.com/elk-zone/elk" target="_blank" rel="noopener">elk</a>&quot;, utilizes this technique as a component.</p>
 <ul>
 <li><a href="https://github.com/elk-zone/elk/blob/5d09e7d2ab473d3fe049ace8468455baa18de9b2/components/aria/AriaAnnouncer.vue" target="_blank" rel="noopener">elk/components/aria/AriaAnnouncer.vue</a></li>
@@ -253,7 +253,7 @@ mediaQuery.addEventListener('change', () =&gt; {
 <p>That concludes our discussion on accessibility in page transitions with Nuxt.js.</p>
 <h2>Solving Page Transitions with Web API</h2>
 <p>Next, I will introduce the Web API, which can be utilized for future client-side routing development without depending on Router libraries or frameworks.</p>
-<p>When it comes to Web APIs related to screen transitions, many people will think of the <a href="https://developer.mozilla.org/en-US/docs/Web/API/History_API" target="_blank" rel="noopener">History API</a>.</p>
+<p>When it comes to Web APIs related to page transitions, many people will think of the <a href="https://developer.mozilla.org/en-US/docs/Web/API/History_API" target="_blank" rel="noopener">History API</a>.</p>
 <p>In the past, a technique combining <code>pushState</code> with Ajax, known as &quot;Pjax&quot;, was used for page transitions. The mentioned <code>pushState</code> is one of the methods of the History API.</p>
 <p>In the case of Vue Router, it provides behavior similar to the History API, and methods such as <code>push</code>, <code>replace</code>, and <code>go</code> exist.</p>
 <p>However, there are several implementation issues when using the History API directly.</p>
@@ -265,10 +265,10 @@ mediaQuery.addEventListener('change', () =&gt; {
 <li>There are many restrictions on the <code>state</code> saved with <code>pushState</code>, and it is prone to breaking.</li>
 </ul>
 <p>To avoid these issues and effectively implement client-side routing, various router libraries like Vue Router have been developed. These libraries utilize the History API in a hidden manner.</p>
-<p>While routers allow you to notify the browser about screen transitions, the browser does not provide information on when exactly this notification should be sent. This means that implementations that deliberately delay the timing of the notification, such as using <code>setTimeout</code>, are necessary.</p>
+<p>While routers allow you to notify the browser about page transitions, the browser does not provide information on when exactly this notification should be sent. This means that implementations that deliberately delay the timing of the notification, such as using <code>setTimeout</code>, are necessary.</p>
 <p>A new solution being formulated to address these challenges is the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigation_API" target="_blank" rel="noopener">Navigation API</a>.</p>
 <p>The Navigation API resolves issues with client-side routing that could not be addressed by the History API.</p>
-<p>By utilizing this API, you can be notified about the start and end of screen transitions, and it becomes possible to use interceptors for restoring scroll positions and adjusting focus locations, among other functionalities.</p>
+<p>By utilizing this API, you can be notified about the start and end of page transitions, and it becomes possible to use interceptors for restoring scroll positions and adjusting focus locations, among other functionalities.</p>
 <p>In particular, there are useful features for various situations, not only when moving forward through pages, but also when using the back button, reloading the page, and more. This is expected to enhance the user experience while ensuring accessibility.</p>
 <p>As of October 2023, it has been implemented and is operational in Chrome, but it has not yet been implemented in Safari or Firefox.</p>
 <p><img src="../images/caniuse-navigation-api.png" alt="Screenshot: Browser Compatibility Chart for Navigation API on Can I Use"></p>
