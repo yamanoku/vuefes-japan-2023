@@ -39,8 +39,6 @@ Please recall the period during the COVID-19 pandemic when many people were forc
 
 This is an example of how things have become accessible through the medium of the web.
 
-そんなウェブのおかげで障害当事者もウェブサービスを通じることでさまざまなものにアクセスできるようになっています。
-
 Thanks to the web, individuals with disabilities have become able to access a variety of resources through web services, including:
 
 * Web searches
