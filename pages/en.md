@@ -55,7 +55,7 @@ Ensuring web accessibility serves as a means to provide equitable services to pe
 
 For this occasion, [Vue Fes Japan 2023](https://vuefes.jp/2023/), I would like to introduce a timely topic related to Japan and web accessibility.
 
-It pertains to the **Reasonable accommodation（合理的配慮）** and the **Environmental Adjustment（環境の整備）**.
+It pertains to the **Partial Amendment of the Basic Act on Persons with Disabilities（障害者基本法の一部改正）** and the **Environmental Adjustment（環境の整備）**.
 
 The Act for Eliminating Discrimination against Persons with Disabilities aims to eradicate discrimination based on disability and realize a society where people, with or without disabilities, live together while acknowledging each other's individuality.
 
@@ -63,7 +63,7 @@ Under this law, instead of unfairly discriminating against people with disabilit
 
 From April of next year, providing reasonable accommodations for people with disabilities will become a legal obligation, not just an effort obligation, for private companies as well.
 
-**Reasonable accommodation** refers to special support and adjustments needed when a person with a disability participates in society. This can take various forms.
+**Reasonable accommodation（合理的配慮）** refers to special support and adjustments needed when a person with a disability participates in society. This can take various forms.
 
 For example, if a person with a disability has difficulty writing, they could receive assistance from someone else to write on their behalf. When communicating, trying out picture cards, photo cards, or tablet devices could be beneficial. Additionally, providing support for mobility to people with physical disabilities can also be considered a part of reasonable accommodation.
 
