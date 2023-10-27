@@ -305,7 +305,7 @@ This method has been adopted by GitHub, allowing users to easily move from the t
 
 ![Screenshot: A link labeled “Skip to content” is displayed on the Nuxt.js repository page](../images/github-skip-link.png)
 
-For information on how to create skip links, please refer to the [accessibility page in the Vue.js official documentation](https://ja.vuejs.org/guide/best-practices/accessibility.html#skip-link), where it is explained in detail.
+For information on how to create skip links, please refer to the [accessibility page in the Vue.js official documentation](https://vuejs.org/guide/best-practices/accessibility.html#skip-link), where it is explained in detail.
 
 Based on the above information, it can be said that it is preferable to choose areas with less content when deciding where to place the focus after a page transition.
 
