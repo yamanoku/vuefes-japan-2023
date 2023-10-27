@@ -1,37 +1,17 @@
-# document-page-template
+# 画面遷移から考えるNuxtアプリケーションをアクセシブルにする方法 / How to make Nuxt applications accessible based on page transitions
 
-Template for making a document page from a @yamanoku presentation.
+2023年10月28日に開催された [Vue Fes Japan 2023](https://vuefes.jp/2023/) にて登壇しました。このサイトは登壇した内容をテキスト化したものです。
 
-## Install
-```bash
-npm ci
-```
+[日本語ページ](https://yamanoku.net/vuefes-japan-2023/ja/)
 
-## Dev Server
-```bash
-npm run serve
-```
+I spoke at [Vue Fes Japan 2023](https://vuefes.jp/2023/) on October 28, 2023. This site is the text of my presentation.
 
-### Japanese Page
-```bash
-http://localhost:8081/ja/
-```
+[English Page](https://yamanoku.net/vuefes-japan-2023/en/)
 
-### English Page
-```bash
-http://localhost:8081/en/
-```
+## Speakerdeck
 
-## Build
-```bash
-npm run build
-```
-
-## Deploy
-```bash
-npm run deploy
-```
+WIP
 
 ## License
 
-[MIT](./LICENSE)
+[CC BY-NC-SA 4.0](./LICENSE)
