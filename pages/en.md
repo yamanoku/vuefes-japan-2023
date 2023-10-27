@@ -467,7 +467,7 @@ This concludes my presentation. Thank you for your attention.
 * [Transitions · Get Started with Nuxt](https://nuxt.com/docs/getting-started/transitions#view-transitions-api-experimental)
 * [What we learned from user testing of accessible client-side routing techniques with Fable Tech Labs | Gatsby](https://www.gatsbyjs.com/blog/2019-07-11-user-testing-accessible-client-routing/)
   * [Accessible JavaScript Routing Prototypes](https://marcy.codes/prototypes/routing/index.html)
-[prefers-reduced-motion: Sometimes less movement is more  |  Articles  |  web.dev](https://web.dev/articles/prefers-reduced-motion)
+* [prefers-reduced-motion: Sometimes less movement is more  |  Articles  |  web.dev](https://web.dev/articles/prefers-reduced-motion)
 * [Smooth and simple transitions with the View Transitions API - Chrome for Developers](https://developer.chrome.com/docs/web-platform/view-transitions/)
 * [Navigation API による「JS での画面遷移」と SPA の改善 | blog.jxck.io](https://blog.jxck.io/entries/2022-04-22/navigation-api.html)
 * [Accessibility roadmap · Issue #23255 · nuxt/nuxt](https://github.com/nuxt/nuxt/issues/23255)
