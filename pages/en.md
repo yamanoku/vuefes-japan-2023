@@ -5,7 +5,7 @@ description: yamanoku's presentation at Vue Fes Japan 2023
 lang: en
 ---
 
-![Slide Title: How to make Nuxt applications accessible based on page transitions](../images/title.png)
+![Slide Title: How to make Nuxt applications accessible based on page transitions](../images/title-en.png)
 
 ## Translation Articles
 

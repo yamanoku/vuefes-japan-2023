@@ -5,7 +5,7 @@ description: やまのくのVue Fes Japan 2023の登壇資料
 lang: ja
 ---
 
-![スライドタイトル：画面遷移から考えるNuxtアプリケーションをアクセシブルにする方法](../images/title.png)
+![スライドタイトル：画面遷移から考えるNuxtアプリケーションをアクセシブルにする方法](../images/title-ja.png)
 
 ## 翻訳記事一覧
 
