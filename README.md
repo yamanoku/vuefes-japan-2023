@@ -10,8 +10,7 @@ I spoke at [Vue Fes Japan 2023](https://vuefes.jp/2023/) on October 28, 2023. Th
 
 ## Speakerdeck
 
-WIP
-
+[画面遷移から考えるNuxtアプリケーションをアクセシブルにする方法 / How to make Nuxt applications accessible based on page transitions - Speaker Deck](https://speakerdeck.com/yamanoku/how-to-make-nuxt-applications-accessible-based-on-page-transitions)
 ## License
 
 [CC BY-NC-SA 4.0](./LICENSE)
